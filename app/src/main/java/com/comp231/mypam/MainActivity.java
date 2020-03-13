@@ -1,10 +1,12 @@
 package com.comp231.mypam;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,11 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                Log.d("############","Items " +  listFromDb.get(arg2) );
-                Intent intent = new Intent(getApplicationContext(),CategoryDetails.class);
+                Intent intent = new Intent(getApplicationContext(),CategoryActivity.class);
                 startActivity(intent);
                 finish();
             }

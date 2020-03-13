@@ -32,7 +32,7 @@ public class DataItemAdapterListView extends ArrayAdapter<Category> {
 
     public DataItemAdapterListView(@NonNull Context context, @NonNull List<Category> objects) {
 
-        super(context, R.layout.category_detail, objects);
+        super(context, R.layout.activity_category, objects);
         mCategory = objects;
         mInflater = LayoutInflater.from(context);
 
