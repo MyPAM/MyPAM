@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         //DataItemAdapterListView adapter = new DataItemAdapterListView(this,categoryList);
 
         //RecyclerView listView = (RecyclerView) findViewById(android.R.id.list);
-        ListView listView = (ListView) findViewById(android.R.id.list);
+        ListView listView = findViewById(android.R.id.list);
 
         listView.setAdapter(adapter);
 
@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-               Log.d("############","Items " +  listFromDb.get(arg2) );
                 Intent intent = new Intent(getApplicationContext(),CategoryActivity.class);
+                String message = listFromDb.get(arg2).getCategoryName();
+                intent.putExtra("category", message);
                 startActivity(intent);
-                finish();
             }
 
         });

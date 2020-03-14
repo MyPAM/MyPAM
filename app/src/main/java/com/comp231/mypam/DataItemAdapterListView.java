@@ -3,6 +3,8 @@ package com.comp231.mypam;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.comp231.mypam.model.Category;
 
@@ -24,13 +27,13 @@ import java.util.List;
 
 public class DataItemAdapterListView extends ArrayAdapter<Category> {
 
-    List<Category> mCategory;
-    LayoutInflater mInflater;
+    private List<Category> mCategory;
+    private LayoutInflater mInflater;
     private Context mContext;
     public TextView tvName;
     public View mView;
 
-    public DataItemAdapterListView(@NonNull Context context, @NonNull List<Category> objects) {
+    DataItemAdapterListView(@NonNull Context context, @NonNull List<Category> objects) {
 
         super(context, R.layout.activity_category, objects);
         mCategory = objects;
@@ -52,5 +55,7 @@ public class DataItemAdapterListView extends ArrayAdapter<Category> {
         tvName.setText(category.getCategoryName());
         return convertView;
     }
+
+
 
 }
