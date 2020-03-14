@@ -87,5 +87,27 @@ public class CategoryActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        FloatingActionButton fabDelete = findViewById(R.id.fabDelete);
+        fabDelete.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+
+                EditText editCategory;
+                editCategory = findViewById(R.id.test1);
+                String name = editCategory.getText().toString();
+
+                final Context here = getBaseContext();
+                DataSource mDataSource = new DataSource(getApplicationContext());
+                mDataSource.open();
+
+                if (function == "U") {
+                    mDataSource.deleteCategory(intent.getStringExtra("category"));
+                }
+                Toast.makeText(here,name + " Deleted", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

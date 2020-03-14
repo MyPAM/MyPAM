@@ -68,7 +68,6 @@ public class DataSource {
             item.setCategoryType(cursor.getString(cursor.getColumnIndex(CategoriesTable.COLUMN_TYPE)));
             categoryItems.add(item);
         }
-        mDatabase.close();
         return categoryItems;
     }
     public Category createCategory(Category category) {
@@ -87,6 +86,19 @@ public class DataSource {
         mDatabase.update(CategoriesTable.TABLE_ITEMS,values,CategoriesTable.COLUMN_ID + "=?", args);
         return category;
     }
+
+    public String deleteCategory(String categoryId) {
+
+        String [] args = {categoryId};
+        String result = getCategory(categoryId).getCategoryName();
+
+        mDatabase.delete(CategoriesTable.TABLE_ITEMS,CategoriesTable.COLUMN_ID + "=?", args);
+
+        return result;
+
+    }
+
+
     public Category getCategory(String categoryId) {
 
         Category category = new Category();
@@ -100,7 +112,6 @@ public class DataSource {
             category.setCategoryStatus(cursor.getString(cursor.getColumnIndex(CategoriesTable.COLUMN_STATUS)));
             category.setCategoryType(cursor.getString(cursor.getColumnIndex(CategoriesTable.COLUMN_TYPE)));
         }
-        mDatabase.close();
         return category;
 
     }
