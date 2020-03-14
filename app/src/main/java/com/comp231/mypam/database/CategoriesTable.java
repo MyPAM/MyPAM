@@ -8,7 +8,7 @@ public class CategoriesTable {
     public static final String COLUMN_TYPE = "type";
 
     public static final String[] ALL_COLUMNS = {COLUMN_ID, COLUMN_NAME, COLUMN_STATUS, COLUMN_TYPE};
-
+    public static final String[] UPDATE_COLUMNS = {COLUMN_NAME, COLUMN_STATUS, COLUMN_TYPE};
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_ITEMS + "(" +
                     COLUMN_ID + " TEXT PRIMARY KEY, " +

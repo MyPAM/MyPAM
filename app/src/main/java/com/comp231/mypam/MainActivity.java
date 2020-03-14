@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.comp231.mypam.database.DataSource;
 import com.comp231.mypam.model.Category;
 import com.comp231.mypam.sample.SampleDataProvider;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,12 +70,21 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 Intent intent = new Intent(getApplicationContext(),CategoryActivity.class);
-                String message = listFromDb.get(arg2).getCategoryName();
+                String message = listFromDb.get(arg2).getCategoryId();
                 intent.putExtra("category", message);
                 startActivity(intent);
             }
 
         });
 
+        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+
+        fabAdd.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
+                i.putExtra("add", "add");
+                startActivity(i);
+            }
+        });
     }
 }

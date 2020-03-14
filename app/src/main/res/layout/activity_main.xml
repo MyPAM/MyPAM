@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="@string/categories"
         android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@android:id/list"
@@ -21,7 +23,19 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/textView" />
+        android:layout_height="508dp"
+        android:layout_below="@id/textView"></ListView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@android:id/list"
+        android:layout_centerHorizontal="true"
+        android:background="#9C27B0"
+        android:clickable="true"
+        android:focusable="auto"
+        android:paddingTop="5dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </RelativeLayout>
