@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvLabel2"
-        android:layout_marginTop="237dp"
+        android:layout_marginTop="29dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="16sp" />
@@ -35,30 +35,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/test1"
-        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/fabConfirm"
         android:clickable="true"
         android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_save"
-        android:layout_toRightOf="@id/fabCancel"
         android:layout_below="@id/test1"
-        android:paddingTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
         android:paddingLeft="15dp"
-        android:layout_centerHorizontal="true"/>
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        android:layout_toRightOf="@id/fabConfirm"
         android:layout_below="@id/test1"
-        android:paddingTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/fabConfirm"
+        android:clickable="true"
         android:paddingLeft="15dp"
-        android:layout_centerHorizontal="true"/>
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
 </RelativeLayout>
