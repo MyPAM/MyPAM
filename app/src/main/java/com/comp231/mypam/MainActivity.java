@@ -48,12 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_category) {
-            /*CategoryFragment fragment = new CategoryFragment();
-            FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();*/
 
+        //commit 2
             Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
             i.putExtra("add", "add");
             startActivity(i);
