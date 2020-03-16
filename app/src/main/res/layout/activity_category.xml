@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoryActivity">
+
+    <TextView
+        android:id="@+id/tvLabel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/categories"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toStartOf="@android:id/list"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@android:id/list" />
+
+    <EditText
+        android:id="@+id/test1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLabel2"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="16sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test1"
+        android:layout_toLeftOf="@id/fabConfirm"
+        android:clickable="true"
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test1"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test1"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/fabConfirm"
+        android:clickable="true"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+</RelativeLayout>

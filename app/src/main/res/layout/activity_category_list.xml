@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoryActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/categories"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toStartOf="@android:id/list"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@android:id/list" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="508dp"
+        android:layout_below="@id/textView"
+        android:paddingBottom="10dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@android:id/list"
+        android:layout_centerHorizontal="true"
+        android:background="#673AB7"
+        android:clickable="true"
+        android:focusable="auto"
+        android:paddingTop="15dp"
+        app:backgroundTint="#673AB7"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</RelativeLayout>
