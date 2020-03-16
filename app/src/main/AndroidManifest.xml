@@ -25,6 +25,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity_ru05_account">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".AccountInfo"></activity>
+
     </application>
 
 </manifest>
