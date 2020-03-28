@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/entryButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:text="Home"
-        android:textSize="28sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
-
-</RelativeLayout>
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Entry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
