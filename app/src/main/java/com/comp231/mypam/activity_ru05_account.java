@@ -20,7 +20,7 @@ public class activity_ru05_account extends AppCompatActivity {
         final EditText accountName = (EditText) findViewById(R.id.accountName);
         final EditText accountDescription = (EditText) findViewById(R.id.accountDescription);
         final EditText accountType = (EditText) findViewById(R.id.accountType);
-        Button saveButton = (Button) findViewById(R.id.saveEntryButton);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

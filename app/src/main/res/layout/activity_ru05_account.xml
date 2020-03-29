@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/accountDescription" />
 
     <Button
-        android:id="@+id/saveEntryButton"
+        android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
@@ -81,6 +81,6 @@
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveEntryButton" />
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

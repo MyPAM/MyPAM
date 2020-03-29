@@ -5,7 +5,4 @@
         android:id="@+id/action_category"
         android:title="@string/categories" />
     <item android:title="Accounts" />
-    <item
-        android:id="@+id/action_entry"
-        android:title="Entry" />
 </menu>
