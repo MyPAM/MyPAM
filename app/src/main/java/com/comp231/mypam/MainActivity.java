@@ -1,27 +1,20 @@
 package com.comp231.mypam;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.comp231.mypam.database.DataSource;
 import com.comp231.mypam.model.Category;
 import com.comp231.mypam.sample.SampleDataProvider;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -52,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         //commit 2
             Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
             i.putExtra("add", "add");
+            startActivity(i);
+        }
+
+        else if (id == R.id.action_entry) {
+
+            //commit 2
+            Intent i = new Intent(getApplicationContext(), EntryActivity.class);
+            //i.putExtra("add", "add");
             startActivity(i);
         }
 
