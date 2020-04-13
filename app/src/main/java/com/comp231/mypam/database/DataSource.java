@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.comp231.mypam.model.Account;
 import com.comp231.mypam.model.Category;
 
 import java.util.ArrayList;
@@ -98,7 +99,6 @@ public class DataSource {
 
     }
 
-
     public Category getCategory(String categoryId) {
 
         Category category = new Category();
@@ -114,5 +114,85 @@ public class DataSource {
         }
         return category;
 
+    }
+
+    //Accounts
+
+    public void seedDataBaseAccounts(List<Account> accountItemList) {
+        long numItems = getAccountItemsCount();
+        if (numItems == 0) {
+            for (Account item : accountItemList) {
+                try {
+                    createItemAccount(item);
+                } catch (SQLiteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    //add a single item to database
+    public Account createItemAccount(Account item) {
+        ContentValues values = item.toValues();
+        mDatabase.insert(AccountsTable.TABLE_ACCOUNT_ITEMS, null, values);
+        return item;
+    }
+
+    public List<Account> getAllAccounts() {
+        List<Account> accountItems = new ArrayList<>();
+        Cursor cursor = mDatabase.query(AccountsTable.TABLE_ACCOUNT_ITEMS, AccountsTable.ALL_COLUMNS_ACCOUNT, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            Account item = new Account();
+            item.setAccountId(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTID)));
+            item.setAccountName(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTNAME)));
+            item.setAccountDescription(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTDESC)));
+            item.setAccountType(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTTYPE)));
+            accountItems.add(item);
+        }
+        return accountItems;
+    }
+
+    public Account updateAccount(Account account) {
+        ContentValues values = new ContentValues();
+        values.put(AccountsTable.COLUMN_ACCOUNTNAME,account.getAccountName());
+        values.put(AccountsTable.COLUMN_ACCOUNTDESC,account.getAccountDescription());
+        values.put(AccountsTable.COLUMN_ACCOUNTTYPE,account.getAccountType());
+
+        String [] args = {account.getAccountId()};
+
+        mDatabase.update(AccountsTable.TABLE_ACCOUNT_ITEMS,values, AccountsTable.COLUMN_ACCOUNTID + "=?", args);
+        return account;
+    }
+
+    public String deleteAccount(String accountId) {
+
+        String [] args = {accountId};
+        String result = getAccount(accountId).getAccountName();
+
+        mDatabase.delete(AccountsTable.TABLE_ACCOUNT_ITEMS,AccountsTable.COLUMN_ACCOUNTID + "=?", args);
+
+        return result;
+
+    }
+
+
+
+    public Account getAccount(String accountId) {
+
+        Account account = new Account();
+
+        String [] search = {accountId};
+        Cursor cursor = mDatabase.query(AccountsTable.TABLE_ACCOUNT_ITEMS,AccountsTable.ALL_COLUMNS_ACCOUNT,AccountsTable.COLUMN_ACCOUNTID + "=?", search,null,null,AccountsTable.COLUMN_ACCOUNTNAME);
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            account.setAccountId(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTID)));
+            account.setAccountName(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTNAME)));
+            account.setAccountDescription(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTDESC)));
+            account.setAccountType(cursor.getString(cursor.getColumnIndex(AccountsTable.COLUMN_ACCOUNTTYPE)));
+        }
+        return account;
+
+    }
+    public long getAccountItemsCount() {
+        return DatabaseUtils.queryNumEntries(mDatabase, AccountsTable.TABLE_ACCOUNT_ITEMS);
     }
 }

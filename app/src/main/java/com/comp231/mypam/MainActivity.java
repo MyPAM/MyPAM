@@ -24,9 +24,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.comp231.mypam.sample.SampleDataProvider.*;
+
 public class MainActivity extends AppCompatActivity {
 
-    List<Category> categoryList = SampleDataProvider.categoryItemList;
+    List<Category> categoryList = categoryItemList;
     DataSource mDataSource;
     private Context mContext;
 

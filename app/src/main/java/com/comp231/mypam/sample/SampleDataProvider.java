@@ -1,5 +1,6 @@
 package com.comp231.mypam.sample;
 
+import com.comp231.mypam.model.Account;
 import com.comp231.mypam.model.Category;
 
 import java.util.ArrayList;
@@ -26,5 +27,23 @@ public class SampleDataProvider {
     private static void addItem(Category item) {
         categoryItemList.add(item);
         categoryItemMap.put(item.getCategoryId(), item);
+    }
+
+    public static List<Account> accountItemList;
+    public static Map<String, Account> accountItemMap;
+
+    static {
+        accountItemList = new ArrayList<>();
+        accountItemMap = new HashMap<>();
+
+        addAccount(new Account(null, "Chequing 1234","Chequing Account at RBC","Chequing"));
+        addAccount(new Account(null, "Savings 5678","Savings Account at RBC","Saving"));
+
+
+    }
+
+    private static void addAccount(Account item) {
+        accountItemList.add(item);
+        accountItemMap.put(item.getAccountId(), item);
     }
 }
