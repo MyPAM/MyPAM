@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.comp231.mypam.AccountInfo;
 import com.comp231.mypam.AccountItemAdapterListView;
-import com.comp231.mypam.CategoryActivity;
 import com.comp231.mypam.R;
 import com.comp231.mypam.database.DataSource;
 import com.comp231.mypam.model.Account;

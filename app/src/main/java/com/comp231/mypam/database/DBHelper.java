@@ -10,7 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DB_FILE_NAME = "categories.db";
 
-    public static final int DB_FILE_VERSION = 2;
+    public static final int DB_FILE_VERSION = 6;
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_FILE_NAME, null, DB_FILE_VERSION);
@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CategoriesTable.SQL_CREATE);
         db.execSQL(AccountsTable.SQL_CREATE_ACCOUNT);
-//        db.execSQL(EntriesTable.SQL_CREATE_ENTRY);
+        db.execSQL(EntriesTable.SQL_CREATE_ENTRY);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CategoriesTable.SQL_CREATE);
         db.execSQL(AccountsTable.SQL_DELETE_ACCOUNT);
         db.execSQL(AccountsTable.SQL_CREATE_ACCOUNT);
-//        db.execSQL(EntriesTable.SQL_DELETE_ENTRY);
-//        db.execSQL(EntriesTable.SQL_CREATE_ENTRY);
+        db.execSQL(EntriesTable.SQL_DELETE_ENTRY);
+        db.execSQL(EntriesTable.SQL_CREATE_ENTRY);
     }
 }

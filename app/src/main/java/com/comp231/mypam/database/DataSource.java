@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.comp231.mypam.model.Account;
 import com.comp231.mypam.model.Category;
+import com.comp231.mypam.model.Entry;
+import com.comp231.mypam.ui.entries.EntriesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,8 +176,6 @@ public class DataSource {
 
     }
 
-
-
     public Account getAccount(String accountId) {
 
         Account account = new Account();
@@ -192,7 +192,55 @@ public class DataSource {
         return account;
 
     }
+
+
     public long getAccountItemsCount() {
         return DatabaseUtils.queryNumEntries(mDatabase, AccountsTable.TABLE_ACCOUNT_ITEMS);
+    }
+
+    //Entries
+
+    public void seedDataBaseEntries(List<Entry> entryList) {
+        long numItems = getEntriesItemsCount();
+        if (numItems == 0) {
+            for (Entry item : entryList) {
+                try {
+                    createItemEntry(item);
+                } catch (SQLiteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    //add a single item to database
+    public Entry createItemEntry(Entry item) {
+        ContentValues values = item.toValues();
+        mDatabase.insert(EntriesTable.TABLE_ENTRY_ITEMS, null, values);
+        return item;
+    }
+
+    public List<Entry> getAllEntries() {
+        List<Entry> entryItems = new ArrayList<>();
+        Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS, EntriesTable.ALL_COLUMNS_ENTRY, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            Entry item = new Entry();
+            item.setEntryId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTID)));
+            item.setEntryDescription(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDESC)));
+            item.setEntryDate(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDATE)));
+            item.setEntryType(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTYPE)));
+            item.setAmount(cursor.getDouble(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYAMOUNT)));
+            entryItems.add(item);
+        }
+        return entryItems;
+    }
+
+    public long getEntriesItemsCount() {
+        long query = 0;
+        try {
+            query = DatabaseUtils.queryNumEntries(mDatabase, EntriesTable.TABLE_ENTRY_ITEMS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return query;
     }
 }

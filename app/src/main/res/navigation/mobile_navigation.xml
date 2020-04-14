@@ -40,4 +40,9 @@
         android:name="com.comp231.mypam.ui.accounts.AccountFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_entries"
+        android:name="com.comp231.mypam.ui.entries.EntriesFragment"
+        android:label="@string/menu_entries"
+        tools:layout="@layout/fragment_entries" />
 </navigation>
