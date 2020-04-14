@@ -40,4 +40,11 @@
         android:name="com.comp231.mypam.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+<!--Login-->
+    <fragment
+        android:id="@+id/nav_graph"
+        android:name="com.comp231.mypam.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
 </navigation>
