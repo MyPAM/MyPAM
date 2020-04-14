@@ -219,6 +219,49 @@ public class DataSource {
         return item;
     }
 
+    public Entry updateEntry(Entry entry) {
+        ContentValues values = new ContentValues();
+        values.put(EntriesTable.COLUMN_ACCOUNTID,entry.getAccountId());
+        values.put(EntriesTable.COLUMN_ENTRYDESC,entry.getEntryDescription());
+        values.put(EntriesTable.COLUMN_ENTRYDATE,entry.getAmount());
+        values.put(EntriesTable.COLUMN_ENTRYTYPE,entry.getEntryType());
+
+        String [] args = {entry.getEntryId()};
+
+        mDatabase.update(EntriesTable.TABLE_ENTRY_ITEMS,values,EntriesTable.COLUMN_ENTRYTID  + "=?", args);
+        return entry;
+    }
+
+    public String deleteEntry(String entryId) {
+
+        String [] args = {entryId};
+        String result = getEntry(entryId).getEntryDescription();
+
+        mDatabase.delete(CategoriesTable.TABLE_ITEMS,CategoriesTable.COLUMN_ID + "=?", args);
+
+        return result;
+
+    }
+
+    //gets one specific entry by key
+    public Entry getEntry(String entryId) {
+
+        Entry entry = new Entry();
+
+        String [] search = {entryId};
+        Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS,EntriesTable.ALL_COLUMNS_ENTRY,EntriesTable.COLUMN_ENTRYTID + "=?", search,null,null,EntriesTable.COLUMN_ENTRYDESC);
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            entry.setEntryId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTID)));
+            entry.setAccountId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ACCOUNTID)));
+            entry.setEntryDescription(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDESC)));
+            entry.setEntryDate(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDATE)));
+            entry.setEntryType(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTYPE)));
+        }
+        return entry;
+
+    }
+
     public List<Entry> getAllEntries() {
         List<Entry> entryItems = new ArrayList<>();
         Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS, EntriesTable.ALL_COLUMNS_ENTRY, null, null, null, null, null);

@@ -26,13 +26,13 @@
         android:layout_width="match_parent"
         android:layout_height="508dp"
         android:layout_below="@id/textView"
-        android:paddingBottom="10dp"
         android:columnWidth="75dip"
         android:gravity="center"
         android:horizontalSpacing="5dip"
         android:numColumns="3"
+        android:paddingBottom="10dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dip"/>
+        android:verticalSpacing="10dip" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"

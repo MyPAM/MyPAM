@@ -20,6 +20,7 @@ import com.comp231.mypam.R;
 import com.comp231.mypam.database.DataSource;
 import com.comp231.mypam.model.Account;
 import com.comp231.mypam.model.Category;
+import com.comp231.mypam.model.Entry;
 import com.comp231.mypam.sample.SampleDataProvider;
 
 import java.util.ArrayList;
@@ -31,13 +32,18 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+    List<Category> categoryList = SampleDataProvider.categoryItemList;
+    List<Account> accountsList = SampleDataProvider.accountItemList;
+    List<Entry> entryList = SampleDataProvider.entryList;
+    DataSource mDataSource;
+    private Context mContext;
+    View myView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -46,7 +52,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //creates and initialize all databases
+        mDataSource = new DataSource(mContext);
+        mDataSource.open();
+        mDataSource.seedDataBaseAccounts(accountsList);
+        mDataSource.seedDataBase(categoryList);
+        mDataSource.seedDataBaseEntries(entryList);
+
 
         return root;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 }

@@ -54,8 +54,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         fabCancel.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(i);
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
             }
@@ -85,8 +83,6 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(here,"Changes Saved", Toast.LENGTH_SHORT).show();
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
-//                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
-//                startActivity(i);
             }
         });
 
@@ -113,12 +109,8 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(here,name + " Deleted", Toast.LENGTH_SHORT).show();
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(i);
             }
         });
-
-
     }
     @Override
     public void onBackPressed(){
