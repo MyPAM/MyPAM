@@ -1,6 +1,7 @@
 package com.comp231.mypam.ui.home;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,16 @@ import com.comp231.mypam.model.Category;
 import com.comp231.mypam.model.Entry;
 import com.comp231.mypam.sample.SampleDataProvider;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 public class HomeFragment extends Fragment {
 
@@ -39,18 +46,18 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     View myView;
 
+    //gets the current date
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+    String currentDateTime = sdf.format(new Date());
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        //declare the chart graph
+        PieChartView pieChartView = root.findViewById(R.id.chart);
 
         //creates and initialize all databases
         mDataSource = new DataSource(mContext);
@@ -59,6 +66,24 @@ public class HomeFragment extends Fragment {
         mDataSource.seedDataBase(categoryList);
         mDataSource.seedDataBaseEntries(entryList);
 
+        int [] arrayColors={Color.BLUE,Color.RED,Color.MAGENTA,Color.GRAY,Color.YELLOW,Color.LTGRAY,Color.GREEN};
+        int indx = 0;
+        //gets the entries from database
+        //final List<Entry> entryListFromDb = mDataSource.getEntryByDate(currentDateTime.substring(0,10));
+        final List<Entry> entryListFromDb = mDataSource.getEntryByDate("04/01/2020");
+
+        //initialize the data for the graph
+        List<SliceValue> pieData = new ArrayList<>();
+
+        //move the entries to the graph
+        for (Entry item: entryListFromDb) {
+            pieData.add(new SliceValue((int)item.getAmount(), arrayColors[indx]).setLabel(item.getEntryDescription() + " " + item.getAmount()));
+            indx = indx +1;
+        }
+
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true).setValueLabelTextSize(14);
+        pieChartView.setPieChartData(pieChartData);
 
         return root;
     }

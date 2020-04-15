@@ -222,9 +222,10 @@ public class DataSource {
     public Entry updateEntry(Entry entry) {
         ContentValues values = new ContentValues();
         values.put(EntriesTable.COLUMN_ACCOUNTID,entry.getAccountId());
+        values.put(EntriesTable.COLUMN_ENTRYDATE,entry.getEntryDate());
         values.put(EntriesTable.COLUMN_ENTRYDESC,entry.getEntryDescription());
-        values.put(EntriesTable.COLUMN_ENTRYDATE,entry.getAmount());
         values.put(EntriesTable.COLUMN_ENTRYTYPE,entry.getEntryType());
+        values.put(EntriesTable.COLUMN_ENTRYAMOUNT,entry.getAmount());
 
         String [] args = {entry.getEntryId()};
 
@@ -233,12 +234,9 @@ public class DataSource {
     }
 
     public String deleteEntry(String entryId) {
-
         String [] args = {entryId};
         String result = getEntry(entryId).getEntryDescription();
-
-        mDatabase.delete(CategoriesTable.TABLE_ITEMS,CategoriesTable.COLUMN_ID + "=?", args);
-
+        mDatabase.delete(EntriesTable.TABLE_ENTRY_ITEMS,EntriesTable.COLUMN_ENTRYTID + "=?", args);
         return result;
 
     }
@@ -256,12 +254,34 @@ public class DataSource {
             entry.setAccountId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ACCOUNTID)));
             entry.setEntryDescription(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDESC)));
             entry.setEntryDate(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDATE)));
-            entry.setEntryType(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTYPE)));
+            entry.setAmount(cursor.getDouble(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYAMOUNT)));
         }
         return entry;
 
     }
 
+    //gets a list of entries by date
+    public List<Entry> getEntryByDate(String date) {
+
+        List<Entry> entryItems = new ArrayList<>();
+        String [] search = {date};
+
+        Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS,EntriesTable.ALL_COLUMNS_ENTRY, EntriesTable.COLUMN_ENTRYDATE + " =? ", search ,EntriesTable.COLUMN_ENTRYDESC,null,EntriesTable.COLUMN_ENTRYDESC);
+        while (cursor.moveToNext()) {
+            Entry item = new Entry();
+            item.setEntryId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTID)));
+            item.setEntryDescription(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDESC)));
+            item.setEntryDate(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDATE)));
+            item.setEntryType(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTYPE)));
+            item.setAmount(cursor.getDouble(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYAMOUNT)));
+            entryItems.add(item);
+        }
+
+        return entryItems;
+
+    }
+
+    //select all entries
     public List<Entry> getAllEntries() {
         List<Entry> entryItems = new ArrayList<>();
         Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS, EntriesTable.ALL_COLUMNS_ENTRY, null, null, null, null, null);
@@ -277,6 +297,7 @@ public class DataSource {
         return entryItems;
     }
 
+
     public long getEntriesItemsCount() {
         long query = 0;
         try {
@@ -286,4 +307,6 @@ public class DataSource {
         }
         return query;
     }
+
+
 }

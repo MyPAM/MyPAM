@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +105,8 @@ public class EntriesFragment extends Fragment {
 
         for (Entry item: entryListFromDb) {
             entriesNames.add(item.getEntryDescription());
-            values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(String.valueOf(item.getAmount()));
+            String amount = String.format("%.2f",item.getAmount());
+            values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(amount);
         }
 
         Collections.sort(entryListFromDb, new Comparator<Entry>() {
@@ -136,7 +138,7 @@ public class EntriesFragment extends Fragment {
 
         });
 
-
+        //event handler for the Add New Entry Button
         FloatingActionButton fabAdd = myView.findViewById(R.id.fabAdd);
 
         fabAdd.setOnClickListener(new View.OnClickListener(){
@@ -173,12 +175,16 @@ public class EntriesFragment extends Fragment {
                 return o1.getEntryDescription().compareTo(o2.getEntryDescription());
             }});
 
-        //poupulating the gridview
-        List<String> values=new ArrayList<String>();
+        //populating the gridview
+        final List<String> values=new ArrayList<String>();
         values.add("Date");values.add("Entry");values.add("Amount");
+        final List<String> valuesIds=new ArrayList<String>();
+        valuesIds.add("Date");valuesIds.add("Entry");valuesIds.add("Amount");
 
         for (Entry item: entryListFromDb) {
-            values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(String.valueOf(item.getAmount()));
+            String amount = String.format("%.2f",item.getAmount());
+            values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(amount);
+            valuesIds.add(item.getEntryId());valuesIds.add(item.getEntryId());valuesIds.add(item.getEntryId());
         }
         GridView myGrid=(GridView) myView.findViewById(android.R.id.list);
 
@@ -193,10 +199,14 @@ public class EntriesFragment extends Fragment {
                 Intent intent = new Intent(mContext, EntryActivity.class);
                 String message = null;
                 try {
-                    message = entryListFromDb.get(arg2).getEntryId();
+                    message = valuesIds.get(arg2);
+                    Log.i("entry",message);
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Log.i("nha",message);
                 intent.putExtra("entry", message);
                 startActivity(intent);
             }
