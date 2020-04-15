@@ -264,21 +264,25 @@ public class DataSource {
     public List<Entry> getEntryByDate(String date) {
 
         List<Entry> entryItems = new ArrayList<>();
-        String [] search = {date};
 
-        Cursor cursor = mDatabase.query(EntriesTable.TABLE_ENTRY_ITEMS,EntriesTable.ALL_COLUMNS_ENTRY, EntriesTable.COLUMN_ENTRYDATE + " =? ", search ,EntriesTable.COLUMN_ENTRYDESC,null,EntriesTable.COLUMN_ENTRYDESC);
+        String xSearch = "%" + date.substring(3,10);
+        String auxQuery = String.format("select entryId,accountId,entryDate,entryDescription,entryType,sum(entryAmount) as amount from entries where entryDate LIKE '%s' group by entryDescription",xSearch);
+        Log.i("test",auxQuery);
+
+        Cursor cursor = mDatabase.rawQuery(auxQuery, null);
+
         while (cursor.moveToNext()) {
+
             Entry item = new Entry();
             item.setEntryId(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTID)));
             item.setEntryDescription(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDESC)));
             item.setEntryDate(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYDATE)));
             item.setEntryType(cursor.getString(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYTYPE)));
-            item.setAmount(cursor.getDouble(cursor.getColumnIndex(EntriesTable.COLUMN_ENTRYAMOUNT)));
+            item.setAmount(cursor.getDouble(cursor.getColumnIndex("amount")));
             entryItems.add(item);
         }
 
         return entryItems;
-
     }
 
     //select all entries

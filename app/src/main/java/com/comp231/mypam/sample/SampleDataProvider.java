@@ -21,6 +21,9 @@ public class SampleDataProvider {
 
         addItem(new Category(null, "Salary","Active","C"));
         addItem(new Category(null, "Rent","Active","D"));
+        addItem(new Category(null, "Groceries","Active","D"));
+        addItem(new Category(null, "Entertainment","Active","D"));
+        addItem(new Category(null, "Restaurant","Active","D"));
         addItem(new Category(null, "Transportation","Active","D"));
         addItem(new Category(null, "Tuition","Active","D"));
         addItem(new Category(null, "Insurance","Active","D"));

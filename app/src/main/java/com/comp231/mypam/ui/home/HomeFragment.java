@@ -3,6 +3,7 @@ package com.comp231.mypam.ui.home;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
     View myView;
 
     //gets the current date
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     String currentDateTime = sdf.format(new Date());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,11 +67,21 @@ public class HomeFragment extends Fragment {
         mDataSource.seedDataBase(categoryList);
         mDataSource.seedDataBaseEntries(entryList);
 
-        int [] arrayColors={Color.BLUE,Color.RED,Color.MAGENTA,Color.GRAY,Color.YELLOW,Color.LTGRAY,Color.GREEN};
+        int [] arrayColors={Color.rgb(115, 163, 175),
+                            Color.rgb(222, 182, 241),
+                            Color.rgb(222, 137, 175),
+                            Color.rgb(72, 182, 241),
+                            Color.rgb(188, 22, 69),
+                            Color.rgb(192, 254, 136),
+                            Color.rgb(140, 162, 168),
+                            Color.RED,Color.MAGENTA,Color.GRAY,Color.YELLOW,Color.LTGRAY,Color.GREEN};
         int indx = 0;
         //gets the entries from database
         //final List<Entry> entryListFromDb = mDataSource.getEntryByDate(currentDateTime.substring(0,10));
-        final List<Entry> entryListFromDb = mDataSource.getEntryByDate("04/01/2020");
+
+        Log.i("test",currentDateTime.substring(0,10));
+
+        final List<Entry> entryListFromDb = mDataSource.getEntryByDate(currentDateTime.substring(0,10));
 
         //initialize the data for the graph
         List<SliceValue> pieData = new ArrayList<>();
