@@ -106,6 +106,11 @@ public class EntriesFragment extends Fragment {
         for (Entry item: entryListFromDb) {
             entriesNames.add(item.getEntryDescription());
             String amount = String.format("%.2f",item.getAmount());
+
+            if (item.getEntryType().equals("D")) {
+                amount = String.format("(%s)",amount);
+            }
+
             values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(amount);
         }
 
@@ -183,6 +188,10 @@ public class EntriesFragment extends Fragment {
 
         for (Entry item: entryListFromDb) {
             String amount = String.format("%.2f",item.getAmount());
+            //formats debit type
+            if (item.getEntryType().equals("D")) {
+                amount = String.format("(%s)",amount);
+            }
             values.add(item.getEntryDate());values.add(item.getEntryDescription());values.add(amount);
             valuesIds.add(item.getEntryId());valuesIds.add(item.getEntryId());valuesIds.add(item.getEntryId());
         }
@@ -200,13 +209,9 @@ public class EntriesFragment extends Fragment {
                 String message = null;
                 try {
                     message = valuesIds.get(arg2);
-                    Log.i("entry",message);
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Log.i("nha",message);
                 intent.putExtra("entry", message);
                 startActivity(intent);
             }

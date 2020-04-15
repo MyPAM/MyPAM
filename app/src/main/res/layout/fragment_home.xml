@@ -28,7 +28,7 @@
         android:gravity="center_horizontal"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="April, 2020"
+        android:text=""
         android:textSize="16sp"
         android:layout_below="@id/tvLabelHome"
         app:layout_constraintEnd_toStartOf="@+id/chart"
@@ -36,12 +36,40 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chart"
         />
-
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/chart"
-        android:layout_below="@id/tvDateHome"
+    <TextView
+        android:id="@+id/tvIncome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Total Income"
+        android:textSize="16sp"
+        android:layout_below="@id/tvDateHome"
+        app:layout_constraintEnd_toStartOf="@+id/tvExpenses"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
         />
+    <TextView
+        android:id="@+id/tvExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Total Income"
+        android:textSize="16sp"
+        android:layout_below="@id/tvIncome"
+        app:layout_constraintEnd_toStartOf="@+id/chart"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        />
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="541dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@id/tvDateHome" />
 
 </RelativeLayout>

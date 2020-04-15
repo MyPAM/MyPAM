@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
     //gets the current date
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     String currentDateTime = sdf.format(new Date());
+    String monthname=(String)android.text.format.DateFormat.format("MMMM", new Date());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +60,12 @@ public class HomeFragment extends Fragment {
 
         //declare the chart graph
         PieChartView pieChartView = root.findViewById(R.id.chart);
+        TextView tvDateHome = root.findViewById(R.id.tvLabelHome);
+        TextView tvIncome = root.findViewById(R.id.tvIncome);
+        TextView tvExpenses = root.findViewById(R.id.tvExpenses);
+
+        //Formmat the date
+        tvDateHome.setText(String.format("%s, %s",monthname,currentDateTime.substring(6,10)));
 
         //creates and initialize all databases
         mDataSource = new DataSource(mContext);
@@ -76,25 +83,32 @@ public class HomeFragment extends Fragment {
                             Color.rgb(140, 162, 168),
                             Color.RED,Color.MAGENTA,Color.GRAY,Color.YELLOW,Color.LTGRAY,Color.GREEN};
         int indx = 0;
+        Double totalExpenses = 0.00;
         //gets the entries from database
-        //final List<Entry> entryListFromDb = mDataSource.getEntryByDate(currentDateTime.substring(0,10));
-
-        Log.i("test",currentDateTime.substring(0,10));
-
-        final List<Entry> entryListFromDb = mDataSource.getEntryByDate(currentDateTime.substring(0,10));
+        final List<Entry> expenses = mDataSource.getExpensesByDate(currentDateTime.substring(0,10));
+        final List<Entry> income = mDataSource.getIncomeByDate(currentDateTime.substring(0,10));
 
         //initialize the data for the graph
         List<SliceValue> pieData = new ArrayList<>();
 
         //move the entries to the graph
-        for (Entry item: entryListFromDb) {
+        for (Entry item: expenses) {
             pieData.add(new SliceValue((int)item.getAmount(), arrayColors[indx]).setLabel(item.getEntryDescription() + " " + item.getAmount()));
+            totalExpenses = totalExpenses + item.getAmount();
             indx = indx +1;
         }
 
         PieChartData pieChartData = new PieChartData(pieData);
         pieChartData.setHasLabels(true).setValueLabelTextSize(14);
         pieChartView.setPieChartData(pieChartData);
+
+        Double total = 0.00;
+
+        for (Entry item: income) {
+            total = item.getAmount();
+        }
+        tvIncome.setText(String.format("Total Income: %.2f",total));
+        tvExpenses.setText(String.format("Total Expenses: (%.2f)",totalExpenses));
 
         return root;
     }

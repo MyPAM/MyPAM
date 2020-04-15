@@ -56,7 +56,9 @@ public class EntryActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
     String currentDateTime = sdf.format(new Date());
     String accountIDSelected;
-    String categorySelected;
+    String categorySpinner;
+    Category categorySelected;
+    String typeSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,8 +127,8 @@ public class EntryActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                categorySelected = spinnerCategory.getSelectedItem().toString();
+                categorySpinner = spinnerCategory.getSelectedItem().toString();
+                categorySelected = mDataSource.getCategoryByName(categorySpinner);
             }
 
             @Override
@@ -180,12 +182,9 @@ public class EntryActivity extends AppCompatActivity {
                 int day = 0, month = 0, year = 0;
 
                 if (function == "C"){
-
                     day =  Integer.parseInt(currentDateTime.substring(3,5));
                     month = Integer.parseInt(currentDateTime.substring(0,2));
                     year = Integer.parseInt(currentDateTime.substring(6,10));
-
-
                 } else {
                     day = Integer.parseInt(mEntry.getEntryDate().substring(0,2));
                     month = Integer.parseInt(mEntry.getEntryDate().substring(3,5));
@@ -198,7 +197,6 @@ public class EntryActivity extends AppCompatActivity {
                         mDate.setText(dateStr);
                     }
                 }, year, month-1, day);
-                Log.i("test2",String.valueOf(month));
                 dpd.show();
             }
         });
@@ -230,13 +228,14 @@ public class EntryActivity extends AppCompatActivity {
                 DataSource mDataSource = new DataSource(getApplicationContext());
                 mDataSource.open();
 
+
                 if (function == "C") {
-                    Entry newEntry = new Entry(null,accountIDSelected,date,categorySelected,"D",amount);
+                    Entry newEntry = new Entry(null,accountIDSelected,date,categorySpinner,categorySelected.getCategoryType(),amount);
                     mDataSource.createItemEntry(newEntry);
                 }
 
                 if (function == "U") {
-                    Entry newEntry = new Entry(intent.getStringExtra("entry"),accountIDSelected,date,categorySelected,"D", amount);
+                    Entry newEntry = new Entry(intent.getStringExtra("entry"),accountIDSelected,date,categorySpinner,categorySelected.getCategoryType(), amount);
                     mDataSource.updateEntry(newEntry);
                 }
                 Toast.makeText(here,"Changes Saved", Toast.LENGTH_SHORT).show();
