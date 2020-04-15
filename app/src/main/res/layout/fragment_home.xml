@@ -36,40 +36,55 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chart"
         />
+
     <TextView
         android:id="@+id/tvIncome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvDateHome"
         android:gravity="left"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:text="Total Income"
+        android:textColor="#3F51B5"
         android:textSize="16sp"
-        android:layout_below="@id/tvDateHome"
         app:layout_constraintEnd_toStartOf="@+id/tvExpenses"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tvExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvIncome"
+        android:gravity="left"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Total Income"
+        android:textColor="#B80202"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvGoal"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent" />
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="541dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@id/tvExpenses" />
+    <TextView
+        android:id="@+id/tvGoal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="Total Income"
+        android:text="Goal #1"
         android:textSize="16sp"
-        android:layout_below="@id/tvIncome"
-        app:layout_constraintEnd_toStartOf="@+id/chart"
+        android:layout_below="@id/chart"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chart"
+        app:layout_constraintTop_toTopOf="@+id/chart"
         />
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="541dp"
-        android:paddingTop="25dp"
-        android:paddingBottom="5dp"
-        android:layout_below="@id/tvDateHome" />
-
 </RelativeLayout>
