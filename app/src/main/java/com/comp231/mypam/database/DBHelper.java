@@ -28,9 +28,9 @@ public class DBHelper extends SQLiteOpenHelper {
         //if necessary, save the existing data before drop
         db.execSQL(CategoriesTable.SQL_DELETE);
         db.execSQL(CategoriesTable.SQL_CREATE);
-        //db.execSQL(AccountsTable.SQL_DELETE_ACCOUNT);
+        db.execSQL(AccountsTable.SQL_DELETE_ACCOUNT);
         db.execSQL(AccountsTable.SQL_CREATE_ACCOUNT);
-        //db.execSQL(EntriesTable.SQL_DELETE_ENTRY);
+        db.execSQL(EntriesTable.SQL_DELETE_ENTRY);
         db.execSQL(EntriesTable.SQL_CREATE_ENTRY);
     }
 }
