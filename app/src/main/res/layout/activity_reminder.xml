@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ReminderActivity">
 
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70sp"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/bt_reminder"
+        android:timePickerMode="spinner"/>
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/reminderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reminders"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textSize="28sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_reminder"
+        android:text="Reminder"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
