@@ -1,6 +1,8 @@
 package com.comp231.mypam;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,5 +52,20 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_reminders) {
+            Intent i = new Intent(getApplicationContext(), ReminderActivity.class);
+            i.putExtra("add", "add");
+            startActivity(i);
+        }
+        if (id == R.id.action_save) {
+            Intent i = new Intent(getApplicationContext(), SaveActivity.class);
+            i.putExtra("add", "add");
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

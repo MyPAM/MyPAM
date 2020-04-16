@@ -10,13 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EntryActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".ReminderActivity"
+            android:parentActivityName=".HomeActivity">
         </activity>
+        <activity android:name=".SaveActivity"
+            android:parentActivityName=".HomeActivity"/>
+        <activity
+            android:name=".EntryActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CategoryActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

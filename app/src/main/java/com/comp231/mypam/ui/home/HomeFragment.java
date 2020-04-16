@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         TextView tvExpenses = root.findViewById(R.id.tvExpenses);
 
         //Formmat the date
-        tvDateHome.setText(String.format("%s, %s",monthname,currentDateTime.substring(6,10)));
+        tvDateHome.setText(String.format("%s %s",monthname,currentDateTime.substring(6,10)));
 
         //creates and initialize all databases
         mDataSource = new DataSource(mContext);
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
 
         //move the entries to the graph
         for (Entry item: expenses) {
-            pieData.add(new SliceValue((int)item.getAmount(), arrayColors[indx]).setLabel(item.getEntryDescription() + " " + item.getAmount()));
+            pieData.add(new SliceValue((int)item.getAmount(), arrayColors[indx]).setLabel(String.format("%s %.2f",item.getEntryDescription(),item.getAmount())));
             totalExpenses = totalExpenses + item.getAmount();
             indx = indx +1;
         }

@@ -2,7 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_category"
-        android:title="@string/categories" />
-    <item android:title="Accounts" />
+        android:id="@+id/action_reminders"
+        android:title="@string/reminders" />
+    <item
+        android:id="@+id/action_save"
+        android:title="Save Data" />
 </menu>

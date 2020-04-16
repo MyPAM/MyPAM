@@ -49,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_category) {
-
-        //commit 2
+        if (id == R.id.action_reminders) {
             Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
             i.putExtra("add", "add");
             startActivity(i);
