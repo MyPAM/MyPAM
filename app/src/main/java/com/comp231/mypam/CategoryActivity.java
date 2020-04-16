@@ -25,8 +25,6 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-
-
         final Intent intent = getIntent();
         final TextView test1;
         DataSource mDataSource = new DataSource(getApplicationContext());
@@ -40,12 +38,15 @@ public class CategoryActivity extends AppCompatActivity {
             Category category = mDataSource.getCategory(intent.getStringExtra("category"));
             test1.setText(category.getCategoryName());
             function = "U";
+
         } else{
             if (intent.getStringExtra("add") != null) {
                 tvLabel2.setText("Add Category");
                 test1 = findViewById(R.id.test1);
                 test1.setText("");
                 function = "C";
+                FloatingActionButton fabDelete = findViewById(R.id.fabDelete);
+                fabDelete.hide();
             }
         }
 
@@ -53,8 +54,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         fabCancel.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(i);
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
             }
@@ -84,12 +83,15 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(here,"Changes Saved", Toast.LENGTH_SHORT).show();
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
-//                Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
-//                startActivity(i);
             }
         });
 
         FloatingActionButton fabDelete = findViewById(R.id.fabDelete);
+        if (function == "C") {
+            fabDelete.hide();
+        }
+
+
         fabDelete.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
 
@@ -107,12 +109,8 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(here,name + " Deleted", Toast.LENGTH_SHORT).show();
                 setResult(CategoryActivity.RESULT_OK);
                 finish();
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(i);
             }
         });
-
-
     }
     @Override
     public void onBackPressed(){

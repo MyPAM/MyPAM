@@ -24,9 +24,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.comp231.mypam.sample.SampleDataProvider.*;
+
 public class MainActivity extends AppCompatActivity {
 
-    List<Category> categoryList = SampleDataProvider.categoryItemList;
+    List<Category> categoryList = categoryItemList;
     DataSource mDataSource;
     private Context mContext;
 
@@ -47,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_category) {
-
-        //commit 2
+        if (id == R.id.action_reminders) {
             Intent i = new Intent(getApplicationContext(), CategoryActivity.class);
             i.putExtra("add", "add");
             startActivity(i);

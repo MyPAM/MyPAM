@@ -76,10 +76,6 @@ public class CategoryFragment extends Fragment {
 
         DataItemAdapterListView adapter = new DataItemAdapterListView(mContext,listFromDb);
 
-        if (root.findViewById(android.R.id.list) == null) {
-            Log.i("test ", "nulo!");
-        }
-
         ListView listView = root.findViewById(android.R.id.list);
 
         listView.setAdapter((ListAdapter) adapter);
@@ -109,12 +105,9 @@ public class CategoryFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(mContext, CategoryActivity.class);
                 i.putExtra("add", "add");
-//                startActivity(i);
                 getActivity().startActivityForResult(i,10);
             }
         });
-
-
 
         return root;
     }

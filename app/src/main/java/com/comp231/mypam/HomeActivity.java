@@ -1,6 +1,8 @@
 package com.comp231.mypam;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,14 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -57,5 +52,20 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_reminders) {
+            Intent i = new Intent(getApplicationContext(), ReminderActivity.class);
+            i.putExtra("add", "add");
+            startActivity(i);
+        }
+        if (id == R.id.action_save) {
+            Intent i = new Intent(getApplicationContext(), SaveActivity.class);
+            i.putExtra("add", "add");
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

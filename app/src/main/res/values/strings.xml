@@ -28,5 +28,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="accounts">Accounts</string>
+    <string name="entries">Entries</string>
+    <string name="menu_entries">Entries</string>
+    <string name="Entries">Entries</string>
+    <string name="reminders">Reminders</string>
 
 </resources>
