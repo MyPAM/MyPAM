@@ -16,6 +16,11 @@
         android:name="com.comp231.mypam.ui.categories.CategoryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_goal"
+        android:name="com.comp231.mypam.ui.categories.CategoryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/activity_goal" />
 
     <fragment
         android:id="@+id/nav_slideshow"
