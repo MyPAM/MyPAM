@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
         TextView tvDateHome = root.findViewById(R.id.tvLabelHome);
         TextView tvIncome = root.findViewById(R.id.tvIncome);
         TextView tvExpenses = root.findViewById(R.id.tvExpenses);
+        TextView tvBalance = root.findViewById(R.id.tvBalance);
 
         //Formmat the date
         tvDateHome.setText(String.format("%s %s",monthname,currentDateTime.substring(6,10)));
@@ -102,14 +103,22 @@ public class HomeFragment extends Fragment {
         pieChartData.setHasLabels(true).setValueLabelTextSize(14);
         pieChartView.setPieChartData(pieChartData);
 
-        Double total = 0.00;
+        Double totalIncome = 0.00;
+        Double totalBalance = 0.00;
 
         for (Entry item: income) {
-            total = item.getAmount();
+            totalIncome = item.getAmount();
         }
-        tvIncome.setText(String.format("Total Income: %.2f",total));
+
+        tvIncome.setText(String.format("Total Income: %.2f",totalIncome));
         tvExpenses.setText(String.format("Total Expenses: (%.2f)",totalExpenses));
 
+        totalBalance = totalIncome - totalExpenses;
+        if (totalBalance < 0) {
+            tvBalance.setText(String.format("Balance: (%.2f)",totalBalance));
+        } else {
+            tvBalance.setText(String.format("Balance: %.2f",totalBalance));
+        }
         return root;
     }
 
