@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ReminderActivityAdd"></activity>
         <activity
             android:name=".CalculatorActivity"
             android:parentActivityName=".HomeActivity">
         </activity>
         <activity
             android:name=".ReminderActivity"
-            android:parentActivityName=".HomeActivity">
-        </activity>
-        <activity android:name=".SaveActivity"
-            android:parentActivityName=".HomeActivity"/>
+            android:parentActivityName=".HomeActivity"></activity>
+        <activity
+            android:name=".SaveActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".EntryActivity"
             android:parentActivityName=".MainActivity" />
