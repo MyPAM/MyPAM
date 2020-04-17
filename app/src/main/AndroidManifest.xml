@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.comp231.mypam">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +21,8 @@
             android:parentActivityName=".HomeActivity"></activity>
         <activity
             android:name=".SaveActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".HomeActivity"/>
+
         <activity
             android:name=".EntryActivity"
             android:parentActivityName=".MainActivity" />
