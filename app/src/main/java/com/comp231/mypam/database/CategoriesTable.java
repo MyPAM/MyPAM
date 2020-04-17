@@ -1,3 +1,4 @@
+// Categories table definition
 package com.comp231.mypam.database;
 
 public class CategoriesTable {

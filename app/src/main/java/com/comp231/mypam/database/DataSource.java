@@ -1,3 +1,4 @@
+// Database handler file
 package com.comp231.mypam.database;
 
 import android.content.ContentValues;
@@ -42,11 +43,11 @@ public class DataSource {
         mDatabase.insert(CategoriesTable.TABLE_ITEMS, null, values);
         return item;
     }
-
+    // count Categories saved
     public long getDataItemsCount() {
         return DatabaseUtils.queryNumEntries(mDatabase, CategoriesTable.TABLE_ITEMS);
     }
-
+    // Populate Db
     public void seedDataBase(List<Category> categoryItemList) {
         long numItems = getDataItemsCount();
         if (numItems == 0) {
@@ -59,7 +60,7 @@ public class DataSource {
             }
         }
     }
-
+    // Get list of all items in the table
     public List<Category> getAllItems() {
         List<Category> categoryItems = new ArrayList<>();
         Cursor cursor = mDatabase.query(CategoriesTable.TABLE_ITEMS, CategoriesTable.ALL_COLUMNS, null, null, null, null, null);
@@ -73,11 +74,13 @@ public class DataSource {
         }
         return categoryItems;
     }
+    // Category creation handler
     public Category createCategory(Category category) {
         ContentValues values = category.toValues();
         mDatabase.insert(CategoriesTable.TABLE_ITEMS,null,values);
         return category;
     }
+    // Category update handler
     public Category updateCategory(Category category) {
         ContentValues values = new ContentValues();
         values.put(CategoriesTable.COLUMN_NAME,category.getCategoryName());
@@ -89,7 +92,7 @@ public class DataSource {
         mDatabase.update(CategoriesTable.TABLE_ITEMS,values,CategoriesTable.COLUMN_ID + "=?", args);
         return category;
     }
-
+    // Category deletion handler
     public String deleteCategory(String categoryId) {
 
         String [] args = {categoryId};
@@ -100,7 +103,7 @@ public class DataSource {
         return result;
 
     }
-
+    // Single category data fetch handler
     public Category getCategory(String categoryId) {
 
         Category category = new Category();
@@ -135,9 +138,8 @@ public class DataSource {
 
     }
 
-
     //Accounts
-
+    // Populate accounts
     public void seedDataBaseAccounts(List<Account> accountItemList) {
         long numItems = getAccountItemsCount();
         if (numItems == 0) {
@@ -156,7 +158,7 @@ public class DataSource {
         mDatabase.insert(AccountsTable.TABLE_ACCOUNT_ITEMS, null, values);
         return item;
     }
-
+    // Fetch accounts data
     public List<Account> getAllAccounts() {
         List<Account> accountItems = new ArrayList<>();
         Cursor cursor = mDatabase.query(AccountsTable.TABLE_ACCOUNT_ITEMS, AccountsTable.ALL_COLUMNS_ACCOUNT, null, null, null, null, null);
@@ -170,7 +172,7 @@ public class DataSource {
         }
         return accountItems;
     }
-
+    // Account update handler
     public Account updateAccount(Account account) {
         ContentValues values = new ContentValues();
         values.put(AccountsTable.COLUMN_ACCOUNTNAME,account.getAccountName());
@@ -182,7 +184,7 @@ public class DataSource {
         mDatabase.update(AccountsTable.TABLE_ACCOUNT_ITEMS,values, AccountsTable.COLUMN_ACCOUNTID + "=?", args);
         return account;
     }
-
+    // Account deletion handler
     public String deleteAccount(String accountId) {
 
         String [] args = {accountId};
@@ -193,7 +195,7 @@ public class DataSource {
         return result;
 
     }
-
+    // Single Account fetch handler
     public Account getAccount(String accountId) {
 
         Account account = new Account();
@@ -211,13 +213,13 @@ public class DataSource {
 
     }
 
-
+    // get count of Accounts
     public long getAccountItemsCount() {
         return DatabaseUtils.queryNumEntries(mDatabase, AccountsTable.TABLE_ACCOUNT_ITEMS);
     }
 
     //Entries
-
+    // Db population
     public void seedDataBaseEntries(List<Entry> entryList) {
         long numItems = getEntriesItemsCount();
         if (numItems == 0) {
@@ -236,7 +238,7 @@ public class DataSource {
         mDatabase.insert(EntriesTable.TABLE_ENTRY_ITEMS, null, values);
         return item;
     }
-
+    // Entry update handler
     public Entry updateEntry(Entry entry) {
         ContentValues values = new ContentValues();
         values.put(EntriesTable.COLUMN_ACCOUNTID,entry.getAccountId());
@@ -250,7 +252,7 @@ public class DataSource {
         mDatabase.update(EntriesTable.TABLE_ENTRY_ITEMS,values,EntriesTable.COLUMN_ENTRYTID  + "=?", args);
         return entry;
     }
-
+    // Entry deletion handler
     public String deleteEntry(String entryId) {
         String [] args = {entryId};
         String result = getEntry(entryId).getEntryDescription();
@@ -341,7 +343,7 @@ public class DataSource {
         return entryItems;
     }
 
-
+    // count entries saved in db
     public long getEntriesItemsCount() {
         long query = 0;
         try {

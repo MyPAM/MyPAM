@@ -1,5 +1,5 @@
 package com.comp231.mypam.database;
-
+// Database definition
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

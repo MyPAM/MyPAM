@@ -1,3 +1,4 @@
+// Entries table definition
 package com.comp231.mypam.database;
 
 import java.util.Date;

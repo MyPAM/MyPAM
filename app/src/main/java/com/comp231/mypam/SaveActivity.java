@@ -42,7 +42,7 @@ public class SaveActivity extends AppCompatActivity {
                         File f = new File(Environment.getExternalStorageDirectory(), "External.csv");
                         String filePath = Environment.getExternalStorageDirectory().toString();
                         CSVWriter writer;
-                        textview2.setText("Saved successfully");
+                        textview2.setText("File successfully saved in: "+filePath);
                         // File exist
                         if (f.exists() && !f.isDirectory()) {
                             FileWriter mFileWriter = new FileWriter(filePath, true);

@@ -8,17 +8,31 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReminderActivityAdd"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:src="@drawable/ic_launcher_foreground"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ReminderActivityAdd">
+        </activity>
         <activity
             android:name=".CalculatorActivity"
             android:parentActivityName=".HomeActivity">
         </activity>
         <activity
             android:name=".ReminderActivity"
-            android:parentActivityName=".HomeActivity"></activity>
+            android:parentActivityName=".HomeActivity">
+
+        </activity>
         <activity
             android:name=".SaveActivity"
             android:parentActivityName=".HomeActivity"/>
@@ -30,17 +44,10 @@
             android:name=".CategoryActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".AccountInfo">
         </activity>
-        <activity android:name=".AccountInfo" />
     </application>
 
 </manifest>
