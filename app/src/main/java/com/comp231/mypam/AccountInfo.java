@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.comp231.mypam.database.DataSource;
 import com.comp231.mypam.model.Account;
-import com.comp231.mypam.model.Category;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AccountInfo extends AppCompatActivity {
@@ -23,7 +21,7 @@ public class AccountInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_ru05_accountinfo);
+        setContentView(R.layout.activity_accountinfo);
 
         final Intent intent = getIntent();
 

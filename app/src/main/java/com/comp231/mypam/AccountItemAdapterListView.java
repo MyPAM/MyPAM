@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.comp231.mypam.model.Account;
-import com.comp231.mypam.model.Category;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class AccountItemAdapterListView extends ArrayAdapter<Account> {
 
     public AccountItemAdapterListView(@NonNull Context context, @NonNull List<Account> objects) {
 
-        super(context, R.layout.activity_ru05_account, objects);
+        super(context, R.layout.activity_account, objects);
         mAccount = objects;
         mInflater = LayoutInflater.from(context);
 
