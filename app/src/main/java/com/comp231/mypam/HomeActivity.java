@@ -66,6 +66,11 @@ public class HomeActivity extends AppCompatActivity {
             i.putExtra("add", "add");
             startActivity(i);
         }
+        if (id == R.id.action_calculator) {
+            Intent i = new Intent(getApplicationContext(), CalculatorActivity.class);
+            i.putExtra("add", "add");
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

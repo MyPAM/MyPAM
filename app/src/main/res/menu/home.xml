@@ -7,5 +7,8 @@
     <item
         android:id="@+id/action_save"
         android:title="Save Data" />
+    <item
+        android:id="@+id/action_calculator"
+        android:title="Calculator" />
 
 </menu>

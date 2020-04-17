@@ -11,6 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ReminderActivityAdd"></activity>
         <activity
+            android:name=".CalculatorActivity"
+            android:parentActivityName=".HomeActivity">
+        </activity>
+        <activity
             android:name=".ReminderActivity"
             android:parentActivityName=".HomeActivity"></activity>
         <activity
